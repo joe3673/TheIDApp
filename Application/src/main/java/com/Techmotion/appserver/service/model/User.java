@@ -1,53 +1,70 @@
 package com.Techmotion.appserver.service.model;
 
-import com.Techmotion.appserver.service.model.UserSubClasses.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Component
 public class User {
 
     private final String userId;
 
-    private final String userName;
+    private String userName;
 
-    private final String password;
+    private String password;
 
-    private final String email;
+    private String email;
 
-    private final String firstName;
+    private String firstName;
 
-    private final String lastName;
+    private String lastName;
 
     private final int age;
 
+    private LocalDateTime creationDate;
+    private LocalDateTime lastLoginDate;
+    private boolean activeStatus;
 
-    @Autowired
-    private AccountStatus accountStatus;
+    private String phoneNumber;
 
-    @Autowired
-    private BusinessProfile businessProfile;
+    private List<String> socialMediaProfiles;
 
-    @Autowired
-    private ContactInformation contactInformation;
+    private List<String> connections;
 
-    @Autowired
-    private DatingProfile datingProfile;
 
-    @Autowired
-    private PersonalProfile personalProfile;
+    private String businessProfileName;
 
-    @Autowired
-    private Preferences preferences;
+    private String careerType;
 
-    @Autowired
-    private  PrivacySettings privacySettings;
+    private String occupation;
 
-    @Autowired
-    private Security security;
+    private int tenure;
 
-    @Autowired
-    private SubscriptionInfo subscriptionInfo;
+    private String skills;
+
+    private String businessProfileBio;
+
+    private String datingProfileName;
+
+    private String datingProfileBio;
+
+    private double height;
+
+
+    private String personalProfileName;
+
+    private String personalProfileBio;
+
+    private LocalDateTime birthday;
+
+    private String hometown;
+
+
+
+
+
+
 
 
     public User(String userId, String userName, String password, String email, String firstName, String lastName, int age) {
@@ -88,75 +105,155 @@ public class User {
         return age;
     }
 
-    public AccountStatus getAccountStatus() {
-        return accountStatus;
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
-    public void setAccountStatus(AccountStatus accountStatus) {
-        this.accountStatus = accountStatus;
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public BusinessProfile getBusinessProfile() {
-        return businessProfile;
+    public LocalDateTime getLastLoginDate() {
+        return lastLoginDate;
     }
 
-    public void setBusinessProfile(BusinessProfile businessProfile) {
-        this.businessProfile = businessProfile;
+    public void setLastLoginDate(LocalDateTime lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
     }
 
-    public ContactInformation getContactInformation() {
-        return contactInformation;
+    public boolean isActiveStatus() {
+        return activeStatus;
     }
 
-    public void setContactInformation(ContactInformation contactInformation) {
-        this.contactInformation = contactInformation;
+    public void setActiveStatus(boolean activeStatus) {
+        this.activeStatus = activeStatus;
     }
 
-    public DatingProfile getDatingProfile() {
-        return datingProfile;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setDatingProfile(DatingProfile datingProfile) {
-        this.datingProfile = datingProfile;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public PersonalProfile getPersonalProfile() {
-        return personalProfile;
+    public List<String> getSocialMediaProfiles() {
+        return socialMediaProfiles;
     }
 
-    public void setPersonalProfile(PersonalProfile personalProfile) {
-        this.personalProfile = personalProfile;
+    public void setSocialMediaProfiles(List<String> socialMediaProfiles) {
+        this.socialMediaProfiles = socialMediaProfiles;
     }
 
-    public Preferences getPreferences() {
-        return preferences;
+    public List<String> getConnections() {
+        return connections;
     }
 
-    public void setPreferences(Preferences preferences) {
-        this.preferences = preferences;
+    public void setConnections(List<String> connections) {
+        this.connections = connections;
     }
 
-    public PrivacySettings getPrivacySettings() {
-        return privacySettings;
+    public String getBusinessProfileName() {
+        return businessProfileName;
     }
 
-    public void setPrivacySettings(PrivacySettings privacySettings) {
-        this.privacySettings = privacySettings;
+    public void setBusinessProfileName(String businessProfileName) {
+        this.businessProfileName = businessProfileName;
     }
 
-    public Security getSecurity() {
-        return security;
+    public String getCareerType() {
+        return careerType;
     }
 
-    public void setSecurity(Security security) {
-        this.security = security;
+    public void setCareerType(String careerType) {
+        this.careerType = careerType;
     }
 
-    public SubscriptionInfo getSubscriptionInfo() {
-        return subscriptionInfo;
+    public String getOccupation() {
+        return occupation;
     }
 
-    public void setSubscriptionInfo(SubscriptionInfo subscriptionInfo) {
-        this.subscriptionInfo = subscriptionInfo;
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public int getTenure() {
+        return tenure;
+    }
+
+    public void setTenure(int tenure) {
+        this.tenure = tenure;
+    }
+
+    public String getSkills() {
+        return skills;
+    }
+
+    public void setSkills(String skills) {
+        this.skills = skills;
+    }
+
+    public String getBusinessProfileBio() {
+        return businessProfileBio;
+    }
+
+    public void setBusinessProfileBio(String businessProfileBio) {
+        this.businessProfileBio = businessProfileBio;
+    }
+
+    public String getDatingProfileName() {
+        return datingProfileName;
+    }
+
+    public void setDatingProfileName(String datingProfileName) {
+        this.datingProfileName = datingProfileName;
+    }
+
+    public String getDatingProfileBio() {
+        return datingProfileBio;
+    }
+
+    public void setDatingProfileBio(String datingProfileBio) {
+        this.datingProfileBio = datingProfileBio;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public String getPersonalProfileName() {
+        return personalProfileName;
+    }
+
+    public void setPersonalProfileName(String personalProfileName) {
+        this.personalProfileName = personalProfileName;
+    }
+
+    public String getPersonalProfileBio() {
+        return personalProfileBio;
+    }
+
+    public void setPersonalProfileBio(String personalProfileBio) {
+        this.personalProfileBio = personalProfileBio;
+    }
+
+    public LocalDateTime getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDateTime birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
     }
 }

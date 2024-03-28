@@ -1,4 +1,8 @@
 package com.Techmotion.appserver.repositiories;
 
-public interface EventRepository {
+import com.Techmotion.appserver.repositiories.model.EventRecord;
+import org.springframework.data.repository.CrudRepository;
+
+public interface EventRepository extends CrudRepository <EventRecord,String> {
+
 }

@@ -1,4 +1,4 @@
 package com.Techmotion.appserver.controller.model;
 
-public class CommercialCreateRequest {
+public class NotificationResponse {
 }

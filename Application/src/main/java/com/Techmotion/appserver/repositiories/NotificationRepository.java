@@ -1,4 +1,4 @@
 package com.Techmotion.appserver.repositiories;
 
-public interface CommercialRepository {
+public interface NotificationRepository {
 }

@@ -1,4 +1,10 @@
 package com.Techmotion.appserver.repositiories;
 
-public interface UserRepository {
+
+import com.Techmotion.appserver.repositiories.model.UserRecord;
+import org.springframework.data.repository.CrudRepository;
+
+
+public interface UserRepository extends CrudRepository<UserRecord, String> {
+
 }

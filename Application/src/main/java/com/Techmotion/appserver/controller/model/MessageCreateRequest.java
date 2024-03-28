@@ -1,4 +1,4 @@
 package com.Techmotion.appserver.controller.model;
 
-public class CommercialUpdateRequest {
+public class MessageCreateRequest {
 }

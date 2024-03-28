@@ -1,22 +1,35 @@
 package com.Techmotion.appserver.service;
 
-import com.Techmotion.appserver.service.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Techmotion.appserver.repositiories.EventRepository;
+import com.Techmotion.appserver.repositiories.UserRepository;
+import com.Techmotion.appserver.repositiories.model.UserRecord;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
 
+    private UserRepository userRepository;
 
-    private final User user;
+    private EventRepository eventRepository;
 
 
-    @Autowired
-    public UserService(User user) {
-        this.user = user;
+    public UserService(UserRepository userRepository, EventRepository eventRepository){
+
+        this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
     }
 
-    public User getUser(){
+
+
+    public UserRecord getUser(String userID){
+        Optional<UserRecord> optionalUserRecord = userRepository.findById(userID);
+
+        if(optionalUserRecord.isEmpty()){
+            throw new RuntimeException();
+        }
+        return optionalUserRecord.get();
 
 
     }
