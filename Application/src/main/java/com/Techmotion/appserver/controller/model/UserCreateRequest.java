@@ -8,7 +8,7 @@ import java.util.List;
 public class UserCreateRequest {
 
     @JsonProperty("userId")
-    private String userId;
+    private long userId;
 
     @JsonProperty("userName")
     private String userName;
@@ -86,11 +86,11 @@ public class UserCreateRequest {
     @JsonProperty("hometown")
     private String hometown;
 
-    public String getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

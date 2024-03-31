@@ -5,11 +5,13 @@ import java.time.LocalDateTime;
 public class Event {
 
 
-    private final String eventID;
+    private final long eventID;
 
     private final String eventName;
 
     private String eventDescription;
+
+    private String location;
 
     private final String hostingOrganizationName;
 
@@ -17,7 +19,7 @@ public class Event {
 
     private LocalDateTime eventEndTime;
 
-    public Event(String eventID, String eventName, String hostingOrganizationName, LocalDateTime eventStartTime) {
+    public Event(long eventID, String eventName, String hostingOrganizationName, LocalDateTime eventStartTime) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.hostingOrganizationName = hostingOrganizationName;
@@ -25,7 +27,7 @@ public class Event {
     }
 
 
-    public String getEventID() {
+    public long getEventID() {
         return eventID;
     }
 
@@ -39,6 +41,14 @@ public class Event {
 
     public void setEventDescription(String eventDescription) {
         this.eventDescription = eventDescription;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getHostingOrganizationName() {

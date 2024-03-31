@@ -7,7 +7,7 @@ import java.util.Map;
 public class Organization {
 
 
-    private final String organizationId;
+    private final long organizationId;
 
     private String organizationName;
 
@@ -38,12 +38,12 @@ public class Organization {
 
     private final LocalDateTime organizationCreationDateTime;
 
-    public Organization(String organizationId, LocalDateTime organizationCreationDateTime) {
+    public Organization(long organizationId, LocalDateTime organizationCreationDateTime) {
         this.organizationId = organizationId;
         this.organizationCreationDateTime = organizationCreationDateTime;
     }
 
-    public String getOrganizationId() {
+    public long getOrganizationId() {
         return organizationId;
     }
 

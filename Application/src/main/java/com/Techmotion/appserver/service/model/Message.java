@@ -4,17 +4,17 @@ import java.time.LocalDateTime;
 
 public class Message {
 
-    private final String id;
+    private final long id;
 
     private String content;
 
     private final LocalDateTime timeSent;
 
-    private final String senderId;
+    private final long senderId;
 
-    private final String recipientId;
+    private final long recipientId;
 
-    public Message(String id, String content, String senderId, String recipientId) {
+    public Message(long id, String content, long senderId, long recipientId) {
         this.id = id;
         this.content = content;
         this.timeSent = LocalDateTime.now();
@@ -22,7 +22,7 @@ public class Message {
         this.recipientId = recipientId;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -38,11 +38,11 @@ public class Message {
         this.content = content;
     }
 
-    public String getSenderId() {
+    public long getSenderId() {
         return senderId;
     }
 
-    public String getRecipientId() {
+    public long getRecipientId() {
         return recipientId;
     }
 }

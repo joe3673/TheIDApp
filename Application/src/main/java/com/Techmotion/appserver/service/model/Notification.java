@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 
 public class Notification {
 
-    private final String id;
+    private final long id;
     private final String content;
     private final LocalDateTime timestamp;
-    private final String type; // String representation of notification type
-    private final String userId;
+    private final String type;
+    private final long userId;
 
 
-    public Notification(String id, String content, LocalDateTime timestamp, String type, String userId) {
+    public Notification(long id, String content, LocalDateTime timestamp, String type, long userId) {
         this.id = id;
         this.content = content;
         this.timestamp = timestamp;
@@ -19,7 +19,7 @@ public class Notification {
         this.userId = userId;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class Notification {
         return type;
     }
 
-    public String getUserId() {
+    public long getUserId() {
         return userId;
     }
 }

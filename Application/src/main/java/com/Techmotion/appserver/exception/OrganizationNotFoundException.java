@@ -1,4 +1,4 @@
 package com.Techmotion.appserver.exception;
 
-public class IDAlreadyExistException {
+public class OrganizationNotFoundException {
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Component
 public class User {
 
-    private final String userId;
+    private final long userId;
 
     private String userName;
 
@@ -67,7 +67,7 @@ public class User {
 
 
 
-    public User(String userId, String userName, String password, String email, String firstName, String lastName, int age) {
+    public User(long userId, String userName, String password, String email, String firstName, String lastName, int age) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -77,7 +77,7 @@ public class User {
         this.age = age;
     }
 
-    public String getUserId() {
+    public long getUserId() {
         return userId;
     }
 
