@@ -46,7 +46,7 @@ public class UserResponse {
         private List<String> socialMediaProfiles;
 
         @JsonProperty("connections")
-        private List<String> connections;
+        private List<Long> connections;
 
 
         @JsonProperty("businessProfileName")
@@ -184,11 +184,11 @@ public class UserResponse {
             this.socialMediaProfiles = socialMediaProfiles;
         }
 
-        public List<String> getConnections() {
+        public List<Long> getConnections() {
             return connections;
         }
 
-        public void setConnections(List<String> connections) {
+        public void setConnections(List<Long> connections) {
             this.connections = connections;
         }
 

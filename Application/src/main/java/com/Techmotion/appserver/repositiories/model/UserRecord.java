@@ -33,9 +33,9 @@ public class UserRecord {
 
     private List<String> socialMediaProfiles;
 
-    private List<String> connections;
+    private List<Long> connections;
 
-
+    //Business Profile
     private String businessProfileName;
 
     private String careerType;
@@ -48,13 +48,14 @@ public class UserRecord {
 
     private String businessProfileBio;
 
+    //DatingInfo
     private String datingProfileName;
 
     private String datingProfileBio;
 
     private double height;
 
-
+    //Personal Info
     private String personalProfileName;
 
     private String personalProfileBio;
@@ -62,6 +63,19 @@ public class UserRecord {
     private LocalDateTime birthday;
 
     private String hometown;
+
+    //Settings
+    private Long settingsId;
+
+    public UserRecord(long userId, String userName, String password, String email, String firstName, String lastName, int age) {
+        this.userId = userId;
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
 
 
     @DynamoDBHashKey(attributeName = "Id")
@@ -172,11 +186,11 @@ public class UserRecord {
     }
 
     @DynamoDBAttribute(attributeName = "Connections")
-    public List<String> getConnections() {
+    public List<Long> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<String> connections) {
+    public void setConnections(List<Long> connections) {
         this.connections = connections;
     }
 
@@ -295,5 +309,14 @@ public class UserRecord {
 
     public void setHometown(String hometown) {
         this.hometown = hometown;
+    }
+
+    @DynamoDBAttribute(attributeName = "Settings")
+    public Long getSettingsId() {
+        return settingsId;
+    }
+
+    public void setSettingsId(Long settingsId) {
+        this.settingsId = settingsId;
     }
 }

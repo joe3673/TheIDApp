@@ -1,5 +1,6 @@
 package com.Techmotion.appserver.service.model;
 
+import com.Techmotion.appserver.Enum.CareerType;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -30,12 +31,12 @@ public class User {
 
     private List<String> socialMediaProfiles;
 
-    private List<String> connections;
+    private List<Long> connections;
 
 
     private String businessProfileName;
 
-    private String careerType;
+    private CareerType careerType;
 
     private String occupation;
 
@@ -60,6 +61,7 @@ public class User {
 
     private String hometown;
 
+    private final String SettingsId;
 
 
 
@@ -67,7 +69,8 @@ public class User {
 
 
 
-    public User(long userId, String userName, String password, String email, String firstName, String lastName, int age) {
+
+    public User(long userId, String userName, String password, String email, String firstName, String lastName, int age, String settingsId) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -75,6 +78,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        SettingsId = settingsId;
     }
 
     public long getUserId() {
@@ -145,11 +149,11 @@ public class User {
         this.socialMediaProfiles = socialMediaProfiles;
     }
 
-    public List<String> getConnections() {
+    public List<Long> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<String> connections) {
+    public void setConnections(List<Long> connections) {
         this.connections = connections;
     }
 
@@ -162,11 +166,11 @@ public class User {
     }
 
     public String getCareerType() {
-        return careerType;
+        return careerType.getValue();
     }
 
-    public void setCareerType(String careerType) {
-        this.careerType = careerType;
+    public void setCareerType(CareerType careerType) {
+        this.careerType =careerType;
     }
 
     public String getOccupation() {
@@ -255,5 +259,9 @@ public class User {
 
     public void setHometown(String hometown) {
         this.hometown = hometown;
+    }
+
+    public String getSettingsId() {
+        return SettingsId;
     }
 }

@@ -1,5 +1,7 @@
 package com.Techmotion.appserver.service.model;
 
+import com.Techmotion.appserver.Enum.NotificationType;
+
 import java.time.LocalDateTime;
 
 public class Notification {
@@ -7,11 +9,11 @@ public class Notification {
     private final long id;
     private final String content;
     private final LocalDateTime timestamp;
-    private final String type;
+    private final NotificationType type;
     private final long userId;
 
 
-    public Notification(long id, String content, LocalDateTime timestamp, String type, long userId) {
+    public Notification(long id, String content, LocalDateTime timestamp, NotificationType type, long userId) {
         this.id = id;
         this.content = content;
         this.timestamp = timestamp;
@@ -31,7 +33,7 @@ public class Notification {
         return timestamp;
     }
 
-    public String getType() {
+    public NotificationType getType() {
         return type;
     }
 
