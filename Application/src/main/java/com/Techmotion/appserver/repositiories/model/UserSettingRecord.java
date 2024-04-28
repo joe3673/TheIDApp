@@ -7,11 +7,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @DynamoDBTable(tableName = "UserSettings")
 public class UserSettingRecord {
 
-    private long userID;
+    private UUID userID;
     private String languagePreference;
 
     private boolean receiveNotifications;
@@ -19,7 +20,7 @@ public class UserSettingRecord {
     private boolean darkMode;
 
     private Map<String, Boolean> visibilitySettings;
-    private List<String> blockedUsers;
+    private List<Long> blockedUsers;
 
     private List<String> securityQuestions;
 
@@ -32,11 +33,11 @@ public class UserSettingRecord {
 
 
     @DynamoDBHashKey(attributeName = "UserId")
-    public long getUserID() {
+    public UUID getUserID() {
         return userID;
     }
 
-    public void setUserID(long userID) {
+    public void setUserID(UUID userID) {
         this.userID = userID;}
 
     @DynamoDBAttribute(attributeName = "LanguagePreferences")
@@ -76,11 +77,11 @@ public class UserSettingRecord {
     }
 
     @DynamoDBAttribute(attributeName = "BlockedUsers")
-    public List<String> getBlockedUsers() {
+    public List<Long> getBlockedUsers() {
         return blockedUsers;
     }
 
-    public void setBlockedUsers(List<String> blockedUsers) {
+    public void setBlockedUsers(List<Long> blockedUsers) {
         this.blockedUsers = blockedUsers;
     }
 

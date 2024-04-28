@@ -5,11 +5,12 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class User {
 
-    private final long userId;
+    private final UUID userId;
 
     private String userName;
 
@@ -28,8 +29,6 @@ public class User {
     private boolean activeStatus;
 
     private String phoneNumber;
-
-    private List<String> socialMediaProfiles;
 
     private List<Long> connections;
 
@@ -61,7 +60,9 @@ public class User {
 
     private String hometown;
 
-    private final String SettingsId;
+    private final UUID SettingsId;
+
+    private List<UUID> events;
 
 
 
@@ -70,7 +71,7 @@ public class User {
 
 
 
-    public User(long userId, String userName, String password, String email, String firstName, String lastName, int age, String settingsId) {
+    public User(UUID userId, String userName, String password, String email, String firstName, String lastName, int age, UUID settingsId) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -81,7 +82,7 @@ public class User {
         SettingsId = settingsId;
     }
 
-    public long getUserId() {
+    public UUID getUserId() {
         return userId;
     }
 
@@ -141,13 +142,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<String> getSocialMediaProfiles() {
-        return socialMediaProfiles;
-    }
-
-    public void setSocialMediaProfiles(List<String> socialMediaProfiles) {
-        this.socialMediaProfiles = socialMediaProfiles;
-    }
 
     public List<Long> getConnections() {
         return connections;
@@ -261,7 +255,15 @@ public class User {
         this.hometown = hometown;
     }
 
-    public String getSettingsId() {
+    public UUID getSettingsId() {
         return SettingsId;
+    }
+
+    public List<UUID> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<UUID> events) {
+        this.events = events;
     }
 }

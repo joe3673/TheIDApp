@@ -3,10 +3,11 @@ package com.Techmotion.appserver.service.model;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class UserSettings {
 
-    private final long userID;
+    private final UUID userID;
     private String languagePreference;
 
     private boolean receiveNotifications;
@@ -25,11 +26,11 @@ public class UserSettings {
 
     private LocalDateTime expiryDate;
 
-    public UserSettings(long userID) {
+    public UserSettings(UUID userID) {
         this.userID = userID;
     }
 
-    public long getUserID() {
+    public UUID getUserID() {
         return userID;
     }
 

@@ -6,12 +6,13 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 
 @DynamoDBTable(tableName = "Users")
 public class UserRecord {
 
-    private long userId;
+    private UUID userId;
 
     private String userName;
 
@@ -25,13 +26,11 @@ public class UserRecord {
 
     private int age;
 
-    private LocalDateTime creationDate;
+    private final LocalDateTime creationDate;
     private LocalDateTime lastLoginDate;
     private boolean activeStatus;
 
     private String phoneNumber;
-
-    private List<String> socialMediaProfiles;
 
     private List<Long> connections;
 
@@ -65,9 +64,12 @@ public class UserRecord {
     private String hometown;
 
     //Settings
-    private Long settingsId;
+    private UUID settingsId;
 
-    public UserRecord(long userId, String userName, String password, String email, String firstName, String lastName, int age) {
+    //Events
+    private List<Long> events;
+
+    public UserRecord(UUID userId, String userName, String password, String email, String firstName, String lastName, int age, LocalDateTime creationDate) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -75,15 +77,16 @@ public class UserRecord {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.creationDate = creationDate;
     }
 
 
     @DynamoDBHashKey(attributeName = "Id")
-    public long getUserId() {
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 
@@ -145,9 +148,6 @@ public class UserRecord {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
 
     @DynamoDBAttribute(attributeName = "LastLoginDate")
     public LocalDateTime getLastLoginDate() {
@@ -176,14 +176,6 @@ public class UserRecord {
         this.phoneNumber = phoneNumber;
     }
 
-    @DynamoDBAttribute(attributeName = "SocialMediaProfiles")
-    public List<String> getSocialMediaProfiles() {
-        return socialMediaProfiles;
-    }
-
-    public void setSocialMediaProfiles(List<String> socialMediaProfiles) {
-        this.socialMediaProfiles = socialMediaProfiles;
-    }
 
     @DynamoDBAttribute(attributeName = "Connections")
     public List<Long> getConnections() {
@@ -312,11 +304,18 @@ public class UserRecord {
     }
 
     @DynamoDBAttribute(attributeName = "Settings")
-    public Long getSettingsId() {
+    public UUID getSettingsId() {
         return settingsId;
     }
 
-    public void setSettingsId(Long settingsId) {
+    public void setSettingsId(UUID settingsId) {
         this.settingsId = settingsId;
+    }
+
+    @DynamoDBAttribute(attributeName = "EventList")
+    public List<Long> getEvents(){return events;}
+
+    public void setEvents(List<Long> events){
+        this.events = events;
     }
 }

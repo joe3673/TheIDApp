@@ -1,11 +1,12 @@
 package com.Techmotion.appserver.service.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Event {
 
 
-    private final long eventID;
+    private final UUID eventID;
 
     private final String eventName;
 
@@ -19,7 +20,7 @@ public class Event {
 
     private LocalDateTime eventEndTime;
 
-    public Event(long eventID, String eventName, String hostingOrganizationName, LocalDateTime eventStartTime) {
+    public Event(UUID eventID, String eventName, String hostingOrganizationName, LocalDateTime eventStartTime) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.hostingOrganizationName = hostingOrganizationName;
@@ -27,7 +28,7 @@ public class Event {
     }
 
 
-    public long getEventID() {
+    public UUID getEventID() {
         return eventID;
     }
 

@@ -4,10 +4,11 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class NotificationRecord {
 
-    private long id;
+    private UUID id;
     private String content;
     private LocalDateTime timestamp;
     private String type;
@@ -15,12 +16,12 @@ public class NotificationRecord {
 
 
 
+
     @DynamoDBHashKey(attributeName = "NotificationID")
-    public long getId() {
+    public UUID getId() {
         return id;
     }
-
-    public void setId(long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
     @DynamoDBAttribute(attributeName = "Content")

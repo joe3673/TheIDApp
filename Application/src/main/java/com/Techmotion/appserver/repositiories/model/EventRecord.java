@@ -5,11 +5,12 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @DynamoDBTable(tableName = "Events")
 public class EventRecord {
 
-    private long eventID;
+    private UUID eventID;
 
     private String eventName;
 
@@ -26,11 +27,11 @@ public class EventRecord {
 
 
     @DynamoDBHashKey(attributeName = "EventID")
-    public long getEventID() {
+    public UUID getEventID() {
         return eventID;
     }
 
-    public void setEventID(long eventID) {
+    public void setEventID(UUID eventID) {
         this.eventID = eventID;
     }
 

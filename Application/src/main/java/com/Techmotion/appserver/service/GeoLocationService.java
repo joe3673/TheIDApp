@@ -1,4 +1,4 @@
 package com.Techmotion.appserver.service;
 
-public class ProximityService {
+public class GeoLocationService {
 }
