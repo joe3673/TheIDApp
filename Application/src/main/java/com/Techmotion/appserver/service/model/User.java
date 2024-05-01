@@ -30,7 +30,7 @@ public class User {
 
     private String phoneNumber;
 
-    private List<Long> connections;
+    private List<UUID> connections;
 
 
     private String businessProfileName;
@@ -143,11 +143,11 @@ public class User {
     }
 
 
-    public List<Long> getConnections() {
+    public List<UUID> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<Long> connections) {
+    public void setConnections(List<UUID> connections) {
         this.connections = connections;
     }
 

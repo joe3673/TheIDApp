@@ -32,7 +32,7 @@ public class UserRecord {
 
     private String phoneNumber;
 
-    private List<Long> connections;
+    private List<UUID> connections;
 
     //Business Profile
     private String businessProfileName;
@@ -178,11 +178,11 @@ public class UserRecord {
 
 
     @DynamoDBAttribute(attributeName = "Connections")
-    public List<Long> getConnections() {
+    public List<UUID> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<Long> connections) {
+    public void setConnections(List<UUID> connections) {
         this.connections = connections;
     }
 
