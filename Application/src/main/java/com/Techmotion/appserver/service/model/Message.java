@@ -11,14 +11,14 @@ public class Message {
 
     private final LocalDateTime timeSent;
 
-    private final long senderId;
+    private final UUID senderId;
 
-    private final long recipientId;
+    private final UUID recipientId;
 
-    public Message(UUID id, String content, long senderId, long recipientId) {
+    public Message(UUID id, String content, UUID senderId, UUID recipientId,LocalDateTime timeSent) {
         this.id = id;
         this.content = content;
-        this.timeSent = LocalDateTime.now();
+        this.timeSent = timeSent;
         this.senderId = senderId;
         this.recipientId = recipientId;
     }
@@ -39,11 +39,11 @@ public class Message {
         this.content = content;
     }
 
-    public long getSenderId() {
+    public UUID getSenderId() {
         return senderId;
     }
 
-    public long getRecipientId() {
+    public UUID getRecipientId() {
         return recipientId;
     }
 }

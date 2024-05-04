@@ -24,6 +24,8 @@ public class User {
 
     private final int age;
 
+    private final UUID SettingsId;
+
     private LocalDateTime creationDate;
     private LocalDateTime lastLoginDate;
     private boolean activeStatus;
@@ -60,8 +62,6 @@ public class User {
 
     private String hometown;
 
-    private final UUID SettingsId;
-
     private List<UUID> events;
 
 
@@ -81,6 +81,9 @@ public class User {
         this.age = age;
         SettingsId = settingsId;
     }
+
+
+
 
     public UUID getUserId() {
         return userId;

@@ -2,10 +2,7 @@ package com.Techmotion.appserver.service;
 
 import com.Techmotion.appserver.exception.UserAlreadyExistException;
 import com.Techmotion.appserver.exception.UserNotFoundException;
-import com.Techmotion.appserver.repositiories.EventRepository;
-import com.Techmotion.appserver.repositiories.MessageRepository;
 import com.Techmotion.appserver.repositiories.UserRepository;
-import com.Techmotion.appserver.repositiories.UserSettingRepository;
 import com.Techmotion.appserver.repositiories.model.UserRecord;
 import com.Techmotion.appserver.service.model.User;
 import org.springframework.stereotype.Service;
@@ -23,17 +20,18 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    private MessageRepository messageRepository;
-    private EventRepository eventRepository;
+    private MessageService messageService;
 
-    private UserSettingRepository userSettingRepository;
+    private EventService eventService;
 
-    public UserService(UserRepository userRepository, EventRepository eventRepository, MessageRepository messageRepository, UserSettingRepository userSettingRepository){
+    private UserSettingService userSettingService;
+
+    public UserService(UserRepository userRepository, EventService eventService, MessageService messageService,UserSettingService userSettingService){
 
         this.userRepository = userRepository;
-        this.eventRepository = eventRepository;
-        this.messageRepository = messageRepository;
-        this.userSettingRepository = userSettingRepository;
+        this.eventService = eventService;
+        this.messageService = messageService;
+        this.userSettingService = userSettingService;
     }
 
     public User createNewUser(User user) {
@@ -71,9 +69,13 @@ public class UserService {
         }
 
     }
-    public UserRecord getUserRecord(UUID userID){
+    public UserRecord getUserRecordById(UUID userID){
         return userRepository.findById(userID)
         .orElseThrow(()-> new UserNotFoundException("User Not Found"));
+    }
+    public User getUserByID(UUID userID){
+
+        return convertRecordToUser(getUserRecordById(userID));
     }
 
     private void checkIfUserExist(User user){
@@ -87,7 +89,7 @@ public class UserService {
 
     public User updateUserLoginInfo(User user){
         Objects.requireNonNull(user, "User must not be null");
-        UserRecord record = getUserRecord(user.getUserId());
+        UserRecord record = getUserRecordById(user.getUserId());
         record.setUserName(user.getUserName());
         record.setEmail(user.getEmail());
         record.setPhoneNumber(user.getPhoneNumber());
@@ -99,7 +101,7 @@ public class UserService {
 
     public User updateUserDatingProfile(User user){
         Objects.requireNonNull(user, "User must not be null");
-        UserRecord record = getUserRecord(user.getUserId());
+        UserRecord record = getUserRecordById(user.getUserId());
         record.setDatingProfileName(user.getDatingProfileName());
         record.setDatingProfileBio(user.getDatingProfileBio());
 
@@ -110,7 +112,7 @@ public class UserService {
 
     public User updateUserBusinessProfile(User user){
         Objects.requireNonNull(user, "User must not be null");
-        UserRecord record = getUserRecord(user.getUserId());
+        UserRecord record = getUserRecordById(user.getUserId());
         record.setBusinessProfileName(user.getBusinessProfileName());
         record.setBusinessProfileBio(user.getBusinessProfileBio());
         record.setCareerType(user.getCareerType());
@@ -124,7 +126,7 @@ public class UserService {
 
     public User updateUserPersonalProfile(User user){
         Objects.requireNonNull(user, "User must not be null");
-        UserRecord record = getUserRecord(user.getUserId());
+        UserRecord record = getUserRecordById(user.getUserId());
         record.setPersonalProfileName(user.getPersonalProfileName());
         record.setPersonalProfileBio(user.getPersonalProfileBio());
         record.setHometown(user.getHometown());
@@ -149,24 +151,26 @@ public class UserService {
         return user;
     }
 
-    public List<UserRecord> getUserConnection(User user,String userName){
+    public List<User> getUserConnection(User user,String userName){
         if(user==null){
             throw new UserNotFoundException("User Not Found");
         }
-        List<UserRecord> userList = getAllUserConnections(user.getUserId());
+        List<User> userList = getAllUserConnections(user);
         return userList.stream()
                 .filter(user1 -> user1.getUserName().contains(userName))
                 .collect(Collectors.toList());
     }
 
-    public List<UserRecord> getAllUserConnections(UUID userID) {
-        if(userID==null){
+    public List<User> getAllUserConnections(User user) {
+        if(user==null){
             throw new UserNotFoundException("User Not Found");
         }
-        UserRecord record = getUserRecord(userID);
+
+        UserRecord record = getUserRecordById(user.getUserId());
         List<UUID> connections = record.getConnections();
         return connections.stream()
-                .map(this::getUserRecord)
+                .map(this::getUserRecordById)
+                .map(this::convertRecordToUser)
                 .collect(Collectors.toList());
     }
 
@@ -177,22 +181,43 @@ public class UserService {
         boolean checked = userList.remove(connectionToDeleteId);
 
         if(checked) {
-            UserRecord record = getUserRecord(user.getUserId());
+            UserRecord record = getUserRecordById(user.getUserId());
             record.setConnections(userList);
             userRepository.save(record);}
         else
         {throw new UserNotFoundException("User was not deleted, please try again.");}
     }
 
-    public List<UUID> getAllUserEventsAttended(User user){
+    public User convertRecordToUser(UserRecord userRecord) {
+
+        Objects.requireNonNull(userRecord, "UserRecord must not be null");
+
+         User user = new User(userRecord.getUserId(), userRecord.getUserName(),
+                userRecord.getPassword(), userRecord.getEmail(), userRecord.getFirstName(),
+                userRecord.getLastName(), userRecord.getAge(), userRecord.getSettingsId());
+
+         user.setCreationDate(userRecord.getCreationDate());
+         user.setLastLoginDate(userRecord.getLastLoginDate());
+         user.setActiveStatus(user.isActiveStatus());
+         user.setPhoneNumber(user.getPhoneNumber());
+         user.setConnections(userRecord.getConnections());
+         user.setBusinessProfileName(userRecord.getBusinessProfileName());
+         user.setBusinessProfileBio(userRecord.getBusinessProfileBio());
+         user.setOccupation(user.getOccupation());
+         user.setTenure(userRecord.getTenure());
+         user.setSkills(userRecord.getSkills());
+         user.setDatingProfileName(userRecord.getDatingProfileName());
+         user.setDatingProfileBio(userRecord.getDatingProfileBio());
+         user.setHeight(userRecord.getHeight());
+         user.setPersonalProfileName(userRecord.getPersonalProfileName());
+         user.setDatingProfileBio(userRecord.getPersonalProfileBio());
+         user.setBirthday(userRecord.getBirthday());
+         user.setHometown(userRecord.getHometown());
+         user.setEvents(userRecord.getEvents());
+
+         return user;
 
 
-        return  null;
-    }
-    public User updateUserSettings(User user){
-
-
-          return null;
     }
 
 

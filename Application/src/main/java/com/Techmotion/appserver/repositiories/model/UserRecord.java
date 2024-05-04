@@ -67,7 +67,7 @@ public class UserRecord {
     private UUID settingsId;
 
     //Events
-    private List<Long> events;
+    private List<UUID> events;
 
     public UserRecord(UUID userId, String userName, String password, String email, String firstName, String lastName, int age, LocalDateTime creationDate) {
         this.userId = userId;
@@ -313,9 +313,9 @@ public class UserRecord {
     }
 
     @DynamoDBAttribute(attributeName = "EventList")
-    public List<Long> getEvents(){return events;}
+    public List<UUID> getEvents(){return events;}
 
-    public void setEvents(List<Long> events){
+    public void setEvents(List<UUID> events){
         this.events = events;
     }
 }

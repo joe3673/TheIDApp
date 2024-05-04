@@ -9,7 +9,7 @@ import java.util.UUID;
 @DynamoDBTable(tableName = "Messages")
 public class MessageRecord {
 
-    private Long messageId;
+    private UUID messageId;
 
     private UUID senderID;
 
@@ -22,11 +22,9 @@ public class MessageRecord {
     private LocalDateTime receivedTimestamp;
 
 
-    MessageRecord(){
 
-    }
 
-    MessageRecord(Long messageId, UUID senderID, UUID receiverID, String messageContent, LocalDateTime sentTimestamp){
+    public MessageRecord(UUID messageId, UUID senderID, UUID receiverID, String messageContent, LocalDateTime sentTimestamp){
         this.messageId = messageId;
         this.senderID = senderID;
         this.receiverID = receiverID;
@@ -35,11 +33,11 @@ public class MessageRecord {
     }
 
     @DynamoDBAttribute(attributeName = "MessageID")
-    public Long getMessageId() {
+    public UUID getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Long messageId) {
+    public void setMessageId(UUID messageId) {
         this.messageId = messageId;
     }
 
