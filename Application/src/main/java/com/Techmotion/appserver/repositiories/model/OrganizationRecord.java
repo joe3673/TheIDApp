@@ -36,10 +36,7 @@ public class OrganizationRecord {
 
     private boolean twoFactorAuthentication;
 
-
-    private boolean subscribed;
-
-    private LocalDateTime expiryDate;
+    private LocalDateTime membershipExpiryDate;
 
     private LocalDateTime organizationCreationDateTime;
 
@@ -153,22 +150,13 @@ public class OrganizationRecord {
         this.twoFactorAuthentication = twoFactorAuthentication;
     }
 
-    @DynamoDBAttribute(attributeName = "SubscriptionStatus")
-    public boolean isSubscribed() {
-        return subscribed;
-    }
-
-    public void setSubscribed(boolean subscribed) {
-        this.subscribed = subscribed;
-    }
-
     @DynamoDBAttribute(attributeName = "ExpiryDate")
-    public LocalDateTime getExpiryDate() {
-        return expiryDate;
+    public LocalDateTime getMembershipExpiryDate() {
+        return membershipExpiryDate;
     }
 
-    public void setExpiryDate(LocalDateTime expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setMembershipExpiryDate(LocalDateTime membershipExpiryDate) {
+        this.membershipExpiryDate = membershipExpiryDate;
     }
 
     @DynamoDBAttribute(attributeName = "OrganizationCreationDate")

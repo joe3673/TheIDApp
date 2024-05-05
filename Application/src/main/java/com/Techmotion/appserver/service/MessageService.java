@@ -17,11 +17,10 @@ public class MessageService {
 
     private final MessageRepository messageRepository;
 
-    private final UserService userService;
 
-    public MessageService(MessageRepository messageRepository, UserService userService) {
+
+    public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
-        this.userService = userService;
     }
 
 
@@ -29,6 +28,9 @@ public class MessageService {
 
         if(sender == null || receiver == null || content == null){
             throw new UserNotFoundException("User or Message Could Not be found.");
+        }
+        if (content.length() > 2000){
+            throw new RuntimeException("Exceeded Character limit");
         }
 
         MessageRecord messageRecord = new MessageRecord(UUID.randomUUID(),sender,receiver,content, LocalDateTime.now());

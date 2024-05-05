@@ -32,10 +32,7 @@ public class Organization {
 
     private boolean twoFactorAuthentication;
 
-
-    private boolean subscribed;
-
-    private LocalDateTime expiryDate;
+    private LocalDateTime membershipExpiryDate;
 
     private final LocalDateTime organizationCreationDateTime;
 
@@ -136,20 +133,12 @@ public class Organization {
         this.twoFactorAuthentication = twoFactorAuthentication;
     }
 
-    public boolean isSubscribed() {
-        return subscribed;
+    public LocalDateTime getMembershipExpiryDate() {
+        return membershipExpiryDate;
     }
 
-    public void setSubscribed(boolean subscribed) {
-        this.subscribed = subscribed;
-    }
-
-    public LocalDateTime getExpiryDate() {
-        return expiryDate;
-    }
-
-    public void setExpiryDate(LocalDateTime expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setMembershipExpiryDate(LocalDateTime membershipExpiryDate) {
+        this.membershipExpiryDate = membershipExpiryDate;
     }
 
     public LocalDateTime getOrganizationCreationDateTime() {
