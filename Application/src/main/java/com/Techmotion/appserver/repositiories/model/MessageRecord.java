@@ -9,11 +9,11 @@ import java.util.UUID;
 @DynamoDBTable(tableName = "Messages")
 public class MessageRecord {
 
-    private UUID messageId;
+    private Long messageId;
 
-    private UUID senderID;
+    private Long senderID;
 
-    private UUID receiverID;
+    private Long receiverID;
 
     private String messageContent;
 
@@ -24,7 +24,7 @@ public class MessageRecord {
 
 
 
-    public MessageRecord(UUID messageId, UUID senderID, UUID receiverID, String messageContent, LocalDateTime sentTimestamp){
+    public MessageRecord(Long messageId, Long senderID, Long receiverID, String messageContent, LocalDateTime sentTimestamp){
         this.messageId = messageId;
         this.senderID = senderID;
         this.receiverID = receiverID;
@@ -33,23 +33,23 @@ public class MessageRecord {
     }
 
     @DynamoDBAttribute(attributeName = "MessageID")
-    public UUID getMessageId() {
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(UUID messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 
     @DynamoDBAttribute(attributeName = "SenderID")
-    public UUID getSenderID() {return senderID;}
+    public Long getSenderID() {return senderID;}
 
-    public void setSenderID(UUID senderID) {this.senderID = senderID;}
+    public void setSenderID(Long senderID) {this.senderID = senderID;}
 
     @DynamoDBAttribute(attributeName = "ReceiverID")
-    public UUID getReceiverID() {return receiverID;}
+    public Long getReceiverID() {return receiverID;}
 
-    public void setReceiverID(UUID receiverID) {this.receiverID = receiverID;}
+    public void setReceiverID(Long receiverID) {this.receiverID = receiverID;}
 
     @DynamoDBAttribute(attributeName = "MessageContent")
     public String getMessageContent() {

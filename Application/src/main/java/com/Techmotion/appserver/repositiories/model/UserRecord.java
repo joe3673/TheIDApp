@@ -12,7 +12,7 @@ import java.util.UUID;
 @DynamoDBTable(tableName = "Users")
 public class UserRecord {
 
-    private UUID userId;
+    private long userId;
 
     private String userName;
 
@@ -32,7 +32,7 @@ public class UserRecord {
 
     private String phoneNumber;
 
-    private List<UUID> connections;
+    private List<Long> connections;
 
     //Business Profile
     private String businessProfileName;
@@ -69,7 +69,7 @@ public class UserRecord {
     //Events
     private List<UUID> events;
 
-    public UserRecord(UUID userId, String userName, String password, String email, String firstName, String lastName, int age, LocalDateTime creationDate) {
+    public UserRecord(long userId, String userName, String password, String email, String firstName, String lastName, int age, LocalDateTime creationDate) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -82,11 +82,11 @@ public class UserRecord {
 
 
     @DynamoDBHashKey(attributeName = "Id")
-    public UUID getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(UUID userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
@@ -178,11 +178,11 @@ public class UserRecord {
 
 
     @DynamoDBAttribute(attributeName = "Connections")
-    public List<UUID> getConnections() {
+    public List<Long> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<UUID> connections) {
+    public void setConnections(List<Long> connections) {
         this.connections = connections;
     }
 

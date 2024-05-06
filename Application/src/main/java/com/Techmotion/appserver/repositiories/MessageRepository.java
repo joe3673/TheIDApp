@@ -4,9 +4,8 @@ import com.Techmotion.appserver.repositiories.model.MessageRecord;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface MessageRepository extends CrudRepository<MessageRecord, UUID> {
+public interface MessageRepository extends CrudRepository<MessageRecord, Long> {
 
-    List<MessageRecord> findBySenderAndReceiver (UUID sender, UUID receiver);
+    List<MessageRecord> findBySenderAndReceiver (Long sender, Long receiver);
 }

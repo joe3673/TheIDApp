@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/messages")
@@ -27,8 +26,8 @@ public class MessageController {
 
     @PostMapping("/send")
     public ResponseEntity<Message> sendMessage(
-            @RequestParam("senderId") UUID senderId,
-            @RequestParam("receiverId") UUID receiverId,
+            @RequestParam("senderId") Long senderId,
+            @RequestParam("receiverId") Long receiverId,
             @RequestParam("content") String content) {
 
         Message sentMessage = messageService.sendMessage(senderId, receiverId, content);
@@ -37,8 +36,8 @@ public class MessageController {
 
     @GetMapping("/retrieve")
     public ResponseEntity<List<Message>> retrieveMessages(
-            @RequestParam("senderId") UUID senderId,
-            @RequestParam("receiverId") UUID receiverId) {
+            @RequestParam("senderId") Long senderId,
+            @RequestParam("receiverId") Long receiverId) {
 
         // Retrieve sender and receiver from database
 

@@ -10,7 +10,7 @@ import java.util.UUID;
 @Component
 public class User {
 
-    private final UUID userId;
+    private final long userId;
 
     private String userName;
 
@@ -32,7 +32,7 @@ public class User {
 
     private String phoneNumber;
 
-    private List<UUID> connections;
+    private List<Long> connections;
 
 
     private String businessProfileName;
@@ -71,7 +71,7 @@ public class User {
 
 
 
-    public User(UUID userId, String userName, String password, String email, String firstName, String lastName, int age, UUID settingsId) {
+    public User(long userId, String userName, String password, String email, String firstName, String lastName, int age, UUID settingsId) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
@@ -85,7 +85,7 @@ public class User {
 
 
 
-    public UUID getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -146,11 +146,11 @@ public class User {
     }
 
 
-    public List<UUID> getConnections() {
+    public List<Long> getConnections() {
         return connections;
     }
 
-    public void setConnections(List<UUID> connections) {
+    public void setConnections(List<Long> connections) {
         this.connections = connections;
     }
 

@@ -7,12 +7,11 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @DynamoDBTable(tableName = "Organizations")
 public class OrganizationRecord {
 
-    private UUID organizationId;
+    private Long organizationId;
 
     private String organizationName;
 
@@ -43,11 +42,11 @@ public class OrganizationRecord {
 
 
     @DynamoDBHashKey(attributeName = "OrganizationId")
-    public UUID getOrganizationId() {
+    public Long getOrganizationId() {
         return organizationId;
     }
 
-    public void setOrganizationId(UUID organizationId){
+    public void setOrganizationId(Long organizationId){
         this.organizationId = organizationId;
     }
 

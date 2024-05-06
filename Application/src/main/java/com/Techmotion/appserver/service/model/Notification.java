@@ -3,18 +3,17 @@ package com.Techmotion.appserver.service.model;
 import com.Techmotion.appserver.Enum.NotificationType;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Notification {
 
-    private final UUID id;
+    private final Long id;
     private final String content;
     private final LocalDateTime timestamp;
     private final NotificationType type;
     private final long userId;
 
 
-    public Notification(UUID id, String content, LocalDateTime timestamp, NotificationType type, long userId) {
+    public Notification(Long id, String content, LocalDateTime timestamp, NotificationType type, long userId) {
         this.id = id;
         this.content = content;
         this.timestamp = timestamp;
@@ -22,7 +21,7 @@ public class Notification {
         this.userId = userId;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

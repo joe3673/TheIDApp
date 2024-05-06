@@ -1,21 +1,20 @@
 package com.Techmotion.appserver.service.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Message {
 
-    private final UUID id;
+    private final Long id;
 
     private String content;
 
     private final LocalDateTime timeSent;
 
-    private final UUID senderId;
+    private final Long senderId;
 
-    private final UUID recipientId;
+    private final Long recipientId;
 
-    public Message(UUID id, String content, UUID senderId, UUID recipientId,LocalDateTime timeSent) {
+    public Message(Long id, String content, Long senderId, Long recipientId, LocalDateTime timeSent) {
         this.id = id;
         this.content = content;
         this.timeSent = timeSent;
@@ -23,7 +22,7 @@ public class Message {
         this.recipientId = recipientId;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
@@ -39,11 +38,11 @@ public class Message {
         this.content = content;
     }
 
-    public UUID getSenderId() {
+    public Long getSenderId() {
         return senderId;
     }
 
-    public UUID getRecipientId() {
+    public Long getRecipientId() {
         return recipientId;
     }
 }

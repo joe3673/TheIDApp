@@ -5,14 +5,12 @@ import com.Techmotion.appserver.exception.UserNotFoundException;
 import com.Techmotion.appserver.repositiories.UserRepository;
 import com.Techmotion.appserver.repositiories.model.UserRecord;
 import com.Techmotion.appserver.service.model.User;
+import com.Techmotion.appserver.service.model.UserSettings;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,10 +18,13 @@ public class UserService {
 
     private UserRepository userRepository;
 
+    private UserSettingService userSettingService;
 
-    public UserService(UserRepository userRepository){
+
+    public UserService(UserRepository userRepository, UserSettingService userSettingService){
 
         this.userRepository = userRepository;
+        this.userSettingService = userSettingService;
 
     }
 
@@ -31,10 +32,17 @@ public class UserService {
     public User createNewUser(User user) {
         Objects.requireNonNull(user, "The user can't be null");
         validateUserInfo(user);
-        UserRecord record = new UserRecord(UUID.randomUUID(), user.getUserName(), user.getPassword(),
+        Random random = new Random();
+        UserRecord record = new UserRecord(LocalDateTime.now().getNano() + random.nextLong(), user.getUserName(), user.getPassword(),
                 user.getEmail(), user.getFirstName(), user.getLastName(), user.getAge(), LocalDateTime.now());
 
         userRepository.save(record);
+
+        UserSettings userSettings = new UserSettings(user.getUserId());
+        userSettings.setDarkMode(true);
+        userSettings.setLanguagePreference("English");
+
+        userSettingService.createNewUserSettings(userSettings);
 
         return user;
     }
@@ -61,11 +69,11 @@ public class UserService {
         }
 
     }
-    public UserRecord getUserRecordById(UUID userID){
+    public UserRecord getUserRecordById(Long userID){
         return userRepository.findById(userID)
         .orElseThrow(()-> new UserNotFoundException("User Not Found"));
     }
-    public User getUserByID(UUID userID){
+    public User getUserByID(Long userID){
 
         return convertRecordToUser(getUserRecordById(userID));
     }
@@ -135,10 +143,12 @@ public class UserService {
         Objects.requireNonNull(user, "User must not be null");
         userRepository.deleteById(user.getUserId());
 
+        userSettingService.deleteUserSettings(user.getUserId());
+
     }
 
     @Transactional
-    public User addUserConnection(User user,UUID connectionId){
+    public User addUserConnection(User user,Long connectionId){
         if(user==null ||connectionId == null ){
             throw new UserNotFoundException("User wasn't Found");
         }
@@ -161,7 +171,7 @@ public class UserService {
             throw new UserNotFoundException("User Not Found");
         }
         UserRecord record = getUserRecordById(user.getUserId());
-        List<UUID> connections = record.getConnections();
+        List<Long> connections = record.getConnections();
         return connections.stream()
                 .map(this::getUserRecordById)
                 .map(this::convertRecordToUser)
@@ -174,7 +184,7 @@ public class UserService {
         {
             throw new UserNotFoundException("User Not Found");
         }
-        List<UUID> userList = user.getConnections();
+        List<Long> userList = user.getConnections();
         boolean checked = userList.remove(connectionToDeleteId);
 
         if(checked) {

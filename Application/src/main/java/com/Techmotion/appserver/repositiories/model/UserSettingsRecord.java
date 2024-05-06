@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.UUID;
 
 @DynamoDBTable(tableName = "UserSettings")
-public class UserSettingRecord {
+public class UserSettingsRecord {
 
-    private UUID userID;
+    private long userID;
     private String languagePreference;
 
     private boolean receiveNotifications;
@@ -33,11 +33,11 @@ public class UserSettingRecord {
 
 
     @DynamoDBHashKey(attributeName = "UserId")
-    public UUID getUserID() {
+    public long getUserID() {
         return userID;
     }
 
-    public void setUserID(UUID userID) {
+    public void setUserID(long userID) {
         this.userID = userID;}
 
     @DynamoDBAttribute(attributeName = "LanguagePreferences")

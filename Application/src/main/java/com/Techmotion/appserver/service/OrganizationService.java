@@ -7,7 +7,7 @@ import com.Techmotion.appserver.service.model.Organization;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
+import java.util.Random;
 
 public class OrganizationService {
 
@@ -23,8 +23,9 @@ public class OrganizationService {
     public Organization createOrganization(Organization organization) {
         Objects.requireNonNull(organization, "The Organization can not be null.");
 
+        Random random = new Random();
         OrganizationRecord organizationRecord = new OrganizationRecord();
-        organizationRecord.setOrganizationId(UUID.randomUUID());
+        organizationRecord.setOrganizationId(LocalDateTime.now().getNano() + random.nextLong());
         organizationRecord.setOrganizationCreationDateTime(LocalDateTime.now());
         organizationRecord.setOrganizationName(organization.getOrganizationName());
         organizationRecord.setOrganizationOwnershipName(organization.getOrganizationOwnershipName());
@@ -45,17 +46,21 @@ public class OrganizationService {
     }
 
 
-    public OrganizationRecord getOrganizationById(UUID organizationID){
+    public OrganizationRecord getOrganizationById(Long organizationID){
         Objects.requireNonNull(organizationID, "Must have an organization ID to find organization. ");
         return organizationRepository.findById(organizationID).orElseThrow(()->new UserNotFoundException("User Wasn't found."));
 
     }
-    public Organization updateOrganization(){
+    public Organization updateOrganizationSettings(){
 
         return null;
     }
 
-    public void deleteOrganizationByID(UUID organizationID){
+    public Organization updateOrganizationProfile() {
+
+        return null;
+    }
+    public void deleteOrganizationByID(Long organizationID){
         Objects.requireNonNull(organizationID, "Must have an organization ID to delete organization. ");
         organizationRepository.deleteById(organizationID);
 

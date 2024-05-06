@@ -3,12 +3,11 @@ package com.Techmotion.appserver.service.model;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public class Organization {
 
 
-    private final UUID organizationId;
+    private final Long organizationId;
 
     private String organizationName;
 
@@ -36,12 +35,12 @@ public class Organization {
 
     private final LocalDateTime organizationCreationDateTime;
 
-    public Organization(UUID organizationId, LocalDateTime organizationCreationDateTime) {
+    public Organization(Long organizationId, LocalDateTime organizationCreationDateTime) {
         this.organizationId = organizationId;
         this.organizationCreationDateTime = organizationCreationDateTime;
     }
 
-    public UUID getOrganizationId() {
+    public Long getOrganizationId() {
         return organizationId;
     }
 
