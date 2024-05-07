@@ -62,7 +62,7 @@ public class User {
 
     private String hometown;
 
-    private List<UUID> events;
+    private List<Long> events;
 
 
 
@@ -262,11 +262,11 @@ public class User {
         return SettingsId;
     }
 
-    public List<UUID> getEvents() {
+    public List<Long> getEvents() {
         return events;
     }
 
-    public void setEvents(List<UUID> events) {
+    public void setEvents(List<Long> events) {
         this.events = events;
     }
 }
