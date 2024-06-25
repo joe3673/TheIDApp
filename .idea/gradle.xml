@@ -16,17 +16,6 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/Frotnend" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files/gradle-7.1" />
-        <option name="gradleJvm" value="#JAVA_HOME" />
-        <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$/Frotnend" />
-          </set>
-        </option>
-      </GradleProjectSettings>
-      <GradleProjectSettings>
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/IntegrationTest" />
         <option name="gradleHome" value="$PROJECT_DIR$/../../../../Program Files/gradle-7.1" />
         <option name="gradleJvm" value="#JAVA_HOME" />

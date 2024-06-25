@@ -1,6 +1,7 @@
 package com.Techmotion.appserver.service.model;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,10 @@ public class Organization {
     private String organizationType;
 
     private String organizationLocation;
+
+    private List<Long> upcomingEvents;
+
+    private List<Long> pastEvents;
 
     private boolean membershipStatus;
 
@@ -74,6 +79,36 @@ public class Organization {
 
     public void setOrganizationLocation(String organizationLocation) {
         this.organizationLocation = organizationLocation;
+    }
+
+    public List<Long> getUpcomingEvents() {
+        return new LinkedList<>(upcomingEvents);
+    }
+
+    public void setUpcomingEvents(List<Long> upcomingEvents) {
+        this.upcomingEvents = upcomingEvents;
+    }
+
+    public void addUpcomingEvent(Long eventID){
+        if(upcomingEvents.size() >= 5 ){
+            upcomingEvents.remove(0);
+        }
+        upcomingEvents.add(eventID);
+    }
+
+    public List<Long> getPastEvents() {
+        return new LinkedList<>(pastEvents);
+    }
+
+    public void setPastEvents(List<Long> pastEvents) {
+        this.pastEvents = pastEvents;
+    }
+
+    public void addToPastEvents(Long eventID){
+        if (pastEvents.size() >=5){
+            pastEvents.remove(0);
+        }
+        pastEvents.add(eventID);
     }
 
     public boolean isMembershipStatus() {

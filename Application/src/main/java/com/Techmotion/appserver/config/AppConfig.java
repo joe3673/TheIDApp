@@ -1,14 +1,16 @@
 package com.Techmotion.appserver.config;
 
 import com.Techmotion.appserver.service.AIService;
-import com.Techmotion.appserver.service.model.AI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class AppConfig {
+
+
     @Bean
-    public AI aiService() {
-        return new AIService();
+    public AIService aiService(WebClient.Builder webClientBuilder) {
+        return new AIService(webClientBuilder);
     }
 }

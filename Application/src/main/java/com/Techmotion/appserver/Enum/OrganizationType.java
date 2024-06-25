@@ -1,10 +1,15 @@
 package com.Techmotion.appserver.Enum;
 
 public enum OrganizationType {
-
-
-
-
+    STORE("Store"),
+    CLOTHING("Clothing"),
+    SHOES("Shoes"),
+    ELECTRONICS("Electronics"),
+    FURNITURE("Furniture"),
+    RESTAURANT("Restaurant"),
+    CAFE("Cafe"),
+    BAR("Bar"),
+    GYM("Gym"),
     ;
 
 
