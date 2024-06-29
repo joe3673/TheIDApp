@@ -6,6 +6,7 @@ import com.Techmotion.appserver.repositiories.model.MessageRecord;
 import com.Techmotion.appserver.service.model.Message;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +24,7 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
-
+    @Transactional
     public Message sendMessage(Long sender, Long receiver, String content){
 
         if(sender == null || receiver == null || content == null){
@@ -33,9 +34,12 @@ public class MessageService {
             throw new RuntimeException("Exceeded Character limit");
         }
         Random random = new Random();
+
         MessageRecord messageRecord = new MessageRecord(LocalDateTime.now().getNano() + random.nextLong(),sender,receiver,content, LocalDateTime.now());
         return convertRecordToMessage(messageRepository.save(messageRecord));
     }
+
+
 
     public List<Message> getMessagesBySenderAndReceiver(Long sender, Long receiver){
         if(sender == null || receiver == null){

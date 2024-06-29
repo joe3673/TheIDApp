@@ -23,11 +23,16 @@ public class OrganizationRecord {
 
     private boolean membershipStatus;
 
+    private List<Long> upcomingEvents;
+
+    private List<Long> pastEvents;
+
     private String languagePreference;
 
     private boolean receiveNotifications;
 
     private boolean darkMode;
+
 
     private Map<String, Boolean> visibilitySettings;
 
@@ -93,6 +98,24 @@ public class OrganizationRecord {
 
     public void setMembershipStatus(boolean membershipStatus) {
         this.membershipStatus = membershipStatus;
+    }
+
+    @DynamoDBAttribute(attributeName = "UpcomingEvents")
+    public List<Long> getUpcomingEvents() {
+        return upcomingEvents;
+    }
+
+    public void setUpcomingEvents(List<Long> upcomingEvents) {
+        this.upcomingEvents = upcomingEvents;
+    }
+
+    @DynamoDBAttribute(attributeName = "pastEvents")
+    public List<Long> getPastEvents() {
+        return pastEvents;
+    }
+
+    public void setPastEvents(List<Long> pastEvents) {
+        this.pastEvents = pastEvents;
     }
 
     @DynamoDBAttribute(attributeName = "LanguagePreferences")
