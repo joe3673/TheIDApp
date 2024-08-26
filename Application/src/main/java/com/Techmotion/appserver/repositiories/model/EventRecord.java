@@ -11,6 +11,8 @@ public class EventRecord {
 
     private Long eventID;
 
+    private Long hostingOrganizationId;
+
     private String eventName;
 
     private String eventDescription;
@@ -23,6 +25,17 @@ public class EventRecord {
 
     private LocalDateTime eventEndTime;
 
+    public EventRecord(Long eventID, Long hostingOrganizationId, String eventName, String eventDescription, String location, String hostingOrganizationName,
+                       LocalDateTime eventStartTime, LocalDateTime eventEndTime) {
+        this.eventID = eventID;
+        this.hostingOrganizationId = hostingOrganizationId;
+        this.eventName = eventName;
+        this.eventDescription = eventDescription;
+        this.location = location;
+        this. hostingOrganizationName = hostingOrganizationName;
+        this. eventStartTime =eventStartTime;
+        this.eventEndTime = eventEndTime;
+    }
 
 
     @DynamoDBHashKey(attributeName = "EventID")
@@ -33,6 +46,12 @@ public class EventRecord {
     public void setEventID(Long eventID) {
         this.eventID = eventID;
     }
+
+    @DynamoDBAttribute(attributeName = "HostingOrganizationID")
+    public Long getHostingOrganizationId(){return hostingOrganizationId;}
+
+    public void setHostingOrganizationId(Long hostingOrganizationId){
+        this.hostingOrganizationId = hostingOrganizationId;}
 
     @DynamoDBAttribute(attributeName = "EventName")
     public String getEventName() {
